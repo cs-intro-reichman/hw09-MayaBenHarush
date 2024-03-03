@@ -118,10 +118,15 @@ public class LanguageModel {
 
     /** Returns a string representing the map of this language model. */
 	public String toString() {
-		
+		StringBuilder str = new StringBuilder();
+		for (String key : CharDataMap.keySet()) {
+			List keyProbs = CharDataMap.get(key);
+			str.append(key + " : " + keyProbs + "\n");
+		}
+		return str.toString();
 	}
 
     public static void main(String[] args) {
-       
+        
     }
 }
