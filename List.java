@@ -71,21 +71,55 @@ public class List {
      *  increments its counter. Otherwise, adds a new CharData object with the
      *  given chr to the beginning of this list. */
     public void update(char chr) {
-        // Your code goes here
+
+        int index = indexOf(chr);
+
+        if(index == -1){
+            addFirst(chr);
+        }
+
+        else {
+            Node nodeCurren = first;
+            while (nodeCurren.cp.chr != chr){
+                nodeCurren = nodeCurren.next;
+            }
+            nodeCurren.cp.count++;
+        }
     }
 
     /** GIVE If the given character exists in one of the CharData objects
      *  in this list, removes this CharData object from the list and returns
      *  true. Otherwise, returns false. */
     public boolean remove(char chr) {
-        // Your code goes here
+        Node nodeCurren = first;
+
+        if (nodeCurren.cp.chr == chr) {
+            first = nodeCurren.next;
+            size--;
+            return true;
+        }
+        while (nodeCurren.next != null) {
+            if (chr == nodeCurren.next.cp.chr) {
+                nodeCurren.next = nodeCurren.next.next;
+                size--;
+                return true;
+            }
+            nodeCurren = nodeCurren.next;
+        }
+        return false;
     }
 
     /** Returns the CharData object at the specified index in this list. 
      *  If the index is negative or is greater than the size of this list, 
      *  throws an IndexOutOfBoundsException. */
     public CharData get(int index) {
-        // Your code goes here
+
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("index is illegal " + index);
+        }
+        
+        CharData[] newList = toArray();
+        return newList[index];
     }
 
     /** Returns an array of CharData objects, containing all the CharData objects in this list. */
