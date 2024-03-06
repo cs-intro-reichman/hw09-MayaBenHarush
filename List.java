@@ -29,9 +29,10 @@ public class List {
 
     /** GIVE Adds a CharData object with the given character to the beginning of this list. */
     public void addFirst(char chr) {
-        Node newNode = new Node(new CharData(chr));
-        newNode.next = first;
-        first = newNode;
+        CharData charData = new CharData(chr);
+        Node nodeCurren = new Node(charData);
+        nodeCurren.next = first; 
+        first = nodeCurren;      
         size++;
     }
     
@@ -117,7 +118,7 @@ public class List {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("index is illegal " + index);
         }
-        
+
         CharData[] newList = toArray();
         return newList[index];
     }
