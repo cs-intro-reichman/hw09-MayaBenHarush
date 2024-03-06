@@ -132,14 +132,14 @@ public class LanguageModel {
     	int generatedTextLength = Integer.parseInt(args[2]);
     	Boolean randomGeneration = args[3].equals("random");
     	String fileName = args[4];
-        LanguageModel lm;
+        LanguageModel s;
         if (randomGeneration){
-            lm = new LanguageModel(windowLength);
+            s = new LanguageModel(windowLength);
         }
     	else{
-            lm = new LanguageModel(windowLength, 20);
+            s = new LanguageModel(windowLength, 20);
         }
-        lm.train(fileName);
-        System.out.println(lm.generate(initialText, generatedTextLength));
+        s.train(fileName);
+        System.out.println(s.generate(initialText, generatedTextLength));
     }
 }
