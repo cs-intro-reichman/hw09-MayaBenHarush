@@ -59,19 +59,18 @@ public class LanguageModel {
     // Computes and sets the probabilities (p and cp fields) of all the
 	// characters in the given list. */
 	public void calculateProbabilities(List probs) {				
-        int sum = 0;
-        ListIterator listIterator = probs.listIterator(0);
-        while (listIterator.hasNext()) {
-            CharData charData = listIterator.next();
-            sum = sum + charData.count;
+        int count = 0;
+        double prop = 0.0;
+        for (int i = 0; i < probs.getSize(); i++) {
+            count = count + probs.get(i).count;
         }
-        listIterator = probs.listIterator(0);
-        double count = 0;
-        while (listIterator.hasNext()) {
-            CharData charData = listIterator.next();
-            charData.p = ((double) charData.count) / sum;
-            count = count + charData.p;
-            charData.cp = count;
+        for (int i = 0; i < probs.getSize(); i++) 
+        {
+            CharData charData = probs.get(i);
+            double probability = (double) charData.count / count;
+            prop =prop+ probability;
+            charData.p = probability;
+            charData.cp = prop;
         }
     
 	}
